@@ -19,6 +19,9 @@ struct ContentView: View {
     /// Controls visibility of the Settings sheet.
     @State private var showSettings = false
 
+    /// Controls visibility of the history map sheet.
+    @State private var showMap = false
+
     init(locationManager: LocationManager, ttsManager: TTSManager) {
         // Wrapping in StateObject here (not in the property declaration) lets us
         // pass arguments to the ViewModel initializer — a common SwiftUI pattern.
@@ -42,6 +45,16 @@ struct ContentView: View {
                         .foregroundStyle(.secondary)
                         .tracking(2)
                     Spacer()
+
+                    // Map button — greyed out until at least one location has been visited
+                    Button { showMap.toggle() } label: {
+                        Image(systemName: "map")
+                            .imageScale(.medium)
+                            .foregroundStyle(viewModel.visitedLocations.isEmpty ? .tertiary : .primary)
+                    }
+                    .disabled(viewModel.visitedLocations.isEmpty)
+                    .padding(.trailing, 4)
+
                     // Settings gear — opens the modal sheet
                     Button { showSettings.toggle() } label: {
                         Image(systemName: "slider.horizontal.3")
@@ -95,6 +108,12 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showSettings) {
             SettingsView().environmentObject(appState)
+        }
+        // History map — passes the visited locations array from the ViewModel.
+        // The sheet receives a snapshot; new visits while the map is open won't
+        // appear until the user closes and reopens it (acceptable for V1).
+        .sheet(isPresented: $showMap) {
+            HistoryMapView(locations: viewModel.visitedLocations)
         }
     }
 }

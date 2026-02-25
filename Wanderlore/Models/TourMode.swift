@@ -10,8 +10,8 @@ import Foundation
 /// and re-triggers often, while Journey (road speed) fires less frequently and
 /// casts a wider search net to keep up with faster movement.
 enum TourMode: String, CaseIterable {
-    case wander  = "Wander"   // pedestrian — city streets, hiking trails
-    case journey = "Journey"  // vehicle — road trips, drives
+    case wander  = "Walking"   // pedestrian — city streets, hiking trails
+    case journey = "Driving"  // vehicle — road trips, drives
 
     /// Minimum distance (meters) the user must travel from the last processed
     /// location before the fetch-and-narrate pipeline fires again.

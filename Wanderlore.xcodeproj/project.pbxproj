@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B1730E5E219BCD9336AF871 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F228805AEB0770EFAD908F7F /* SettingsView.swift */; };
 		218EB22D8F33F62CF8B7CAA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCDCF98EF4ABE07DBF9403C6 /* Assets.xcassets */; };
+		22677AD520177C362C67F2FA /* VisitedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E563CF7FDCC687DDDD25D573 /* VisitedLocation.swift */; };
 		236425454BA93A31616A08F7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019CBF2E9323C02BA34151FF /* ContentView.swift */; };
 		25DCCFB34189C26C90C186C8 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDE5847CBF8B8E0CF2A012C /* AppState.swift */; };
 		28407C7487A3B2425688F078 /* InterestFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A2C5AD43A4744F33F010EF /* InterestFilter.swift */; };
@@ -16,6 +17,7 @@
 		43328CA2AE814EF58882D5C8 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = E114424D3C77777CB6A724DF /* Config.swift */; };
 		50062ECD22198F2AEFE66906 /* TourMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FD5F57C8E6A8918CBAE894 /* TourMode.swift */; };
 		773178F6D12F4F30642810C7 /* TTSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D732BF14B9C8C5609789B8F /* TTSManager.swift */; };
+		7D413054ADDF03F76F0FA90B /* HistoryMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540E1BD0E4D61C163D4D212D /* HistoryMapView.swift */; };
 		7F33F8D0D03C97187EB77C92 /* WanderloreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B826E633B3E04778BE9308 /* WanderloreUITests.swift */; };
 		90505D4227699B774C5F6E94 /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 771EB05318070F576587F4EC /* ClaudeService.swift */; };
 		A83BA41B2EE3948D061190A5 /* LocationArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7AC0BBE7BA121DBDE9C5C5 /* LocationArticle.swift */; };
@@ -54,19 +56,21 @@
 		2AFA29E1E19D43AE37D858C7 /* NarrationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarrationCard.swift; sourceTree = "<group>"; };
 		2C3E69CA2DC650D9B345972E /* WikipediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaService.swift; sourceTree = "<group>"; };
 		42A7292F17A3483D12284655 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		540E1BD0E4D61C163D4D212D /* HistoryMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryMapView.swift; sourceTree = "<group>"; };
 		54FD5F57C8E6A8918CBAE894 /* TourMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourMode.swift; sourceTree = "<group>"; };
 		6D732BF14B9C8C5609789B8F /* TTSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSManager.swift; sourceTree = "<group>"; };
 		771EB05318070F576587F4EC /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
 		87B826E633B3E04778BE9308 /* WanderloreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WanderloreUITests.swift; sourceTree = "<group>"; };
 		98506389C2C07D02436682F3 /* StartStopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStopButton.swift; sourceTree = "<group>"; };
 		ACDE5847CBF8B8E0CF2A012C /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		B59EE60B63CD3C4FC4EBDF49 /* WanderloreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderloreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6D5CEFABE4F994625910735 /* WanderloreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanderloreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59EE60B63CD3C4FC4EBDF49 /* WanderloreUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WanderloreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D5CEFABE4F994625910735 /* WanderloreTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WanderloreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCDCF98EF4ABE07DBF9403C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D07FF930D4D661B6294983BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D8D44BE9D8C425AD96C7D10D /* ModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModePicker.swift; sourceTree = "<group>"; };
 		E07BC1AFDE524238986ACE79 /* Wanderlore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wanderlore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E114424D3C77777CB6A724DF /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		E563CF7FDCC687DDDD25D573 /* VisitedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedLocation.swift; sourceTree = "<group>"; };
 		F228805AEB0770EFAD908F7F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F2A2C5AD43A4744F33F010EF /* InterestFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +81,7 @@
 			children = (
 				45F6AD62F356F325B0F2A1FF /* Components */,
 				49EDFBF8D688EDAB2A304410 /* Main */,
+				DCD84E260EF0B284D73EDAB6 /* Map */,
 				AD6D3CEBD98DA99CACDB5284 /* Settings */,
 			);
 			path = Features;
@@ -215,8 +220,17 @@
 				F2A2C5AD43A4744F33F010EF /* InterestFilter.swift */,
 				1E7AC0BBE7BA121DBDE9C5C5 /* LocationArticle.swift */,
 				54FD5F57C8E6A8918CBAE894 /* TourMode.swift */,
+				E563CF7FDCC687DDDD25D573 /* VisitedLocation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DCD84E260EF0B284D73EDAB6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				540E1BD0E4D61C163D4D212D /* HistoryMapView.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		F22921A190BCA94030ACD82C /* Products */ = {
@@ -301,7 +315,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2620;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					1BE0AEF4EE5E5B38F6A19C3F = {
 						TestTargetID = BAB8A5CEA7E25FAC57623716;
@@ -367,6 +381,7 @@
 				90505D4227699B774C5F6E94 /* ClaudeService.swift in Sources */,
 				43328CA2AE814EF58882D5C8 /* Config.swift in Sources */,
 				236425454BA93A31616A08F7 /* ContentView.swift in Sources */,
+				7D413054ADDF03F76F0FA90B /* HistoryMapView.swift in Sources */,
 				28407C7487A3B2425688F078 /* InterestFilter.swift in Sources */,
 				A83BA41B2EE3948D061190A5 /* LocationArticle.swift in Sources */,
 				C05DB2268B9005F0CFF7E009 /* LocationManager.swift in Sources */,
@@ -377,6 +392,7 @@
 				3FA4792A55B5A7B6D19BFB59 /* StartStopButton.swift in Sources */,
 				773178F6D12F4F30642810C7 /* TTSManager.swift in Sources */,
 				50062ECD22198F2AEFE66906 /* TourMode.swift in Sources */,
+				22677AD520177C362C67F2FA /* VisitedLocation.swift in Sources */,
 				F64A2EF90DAA881AE2DA5433 /* WanderloreApp.swift in Sources */,
 				C92881DFE9CF9B2092D8C9D4 /* WikipediaService.swift in Sources */,
 			);
@@ -471,7 +487,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -492,7 +507,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -508,7 +522,6 @@
 				DEVELOPMENT_TEAM = EBUBW4Q4F8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Wanderlore/Resources/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -548,7 +561,6 @@
 				DEVELOPMENT_TEAM = EBUBW4Q4F8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Wanderlore/Resources/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,7 +628,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -630,7 +641,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

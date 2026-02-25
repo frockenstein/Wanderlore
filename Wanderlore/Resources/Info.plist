@@ -31,16 +31,15 @@
 	<array>
 		<string>location</string>
 		<string>audio</string>
-		<string>fetch</string>
-		<string>processing</string>
-		<string>external-accessory</string>
-		<string>nearby-interaction</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>

@@ -40,6 +40,12 @@ final class MainViewModel: ObservableObject {
     /// True while a tour session is active (GPS running). Drives button label and mode picker lock.
     @Published var isRunning: Bool = false
 
+    /// Ordered list of every location successfully narrated during this app session.
+    /// Appended to after each completed pipeline run. Persists across start/stop cycles
+    /// within a single launch — cleared on next app launch (no persistence to disk yet).
+    /// Read by ContentView to populate HistoryMapView.
+    @Published var visitedLocations: [VisitedLocation] = []
+
     // MARK: - Dependencies (public so ContentView can forward voice changes, etc.)
 
     let locationManager: LocationManager
@@ -143,6 +149,16 @@ final class MainViewModel: ObservableObject {
             currentNarration = narration
             statusMessage = top.title  // show article name as the card header
             isLoading = false
+
+            // Record the visit so it appears as a dot on the history map.
+            // Uses the article's GPS coordinate (from geosearch), not the user's
+            // exact position, so the dot marks the landmark itself.
+            visitedLocations.append(VisitedLocation(
+                coordinate: CLLocationCoordinate2D(latitude: top.lat, longitude: top.lon),
+                title: top.title,
+                narration: narration
+            ))
+
             ttsManager.speak(narration)
 
         } catch {
