@@ -50,13 +50,13 @@ final class TTSManager: NSObject, ObservableObject {
         utterance.pitchMultiplier = 1.0 // Neutral pitch; adjustable for character
         utterance.volume = 1.0          // Full volume — session ducking handles the mix
 
-        // Use the user-selected voice if one is set, otherwise fall back to en-US.
-        // AVSpeechSynthesisVoice(identifier:) returns nil for invalid identifiers,
-        // so we guard against that gracefully.
+        // Use the user-selected voice if one is set; otherwise pick the highest-quality
+        // voice available for the device's current language.
+        // Quality tiers: .premium (Siri voice, if downloaded) → .enhanced → default.
         if !voiceIdentifier.isEmpty, let voice = AVSpeechSynthesisVoice(identifier: voiceIdentifier) {
             utterance.voice = voice
         } else {
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+            utterance.voice = TTSManager.bestAvailableVoice()
         }
 
         // Configure audio session for spoken-word playback.
@@ -82,6 +82,24 @@ final class TTSManager: NSObject, ObservableObject {
     /// Resumes from the paused word position.
     func resume() {
         synthesizer.continueSpeaking()
+    }
+
+    // MARK: - Voice Selection
+
+    /// Returns the highest-quality voice available for the device's current language.
+    ///
+    /// iOS ships the same voice files used by Siri under AVSpeechSynthesisVoice, exposed
+    /// at `.premium` quality once the user has downloaded them (Settings → Accessibility →
+    /// Spoken Content → Voices). If premium isn't downloaded, `.enhanced` is next best.
+    /// Falls back to the system default if neither tier exists for the current language.
+    static func bestAvailableVoice() -> AVSpeechSynthesisVoice? {
+        let language = Locale.current.language.languageCode?.identifier ?? "en"
+        let candidates = AVSpeechSynthesisVoice.speechVoices()
+            .filter { $0.language.hasPrefix(language) }
+
+        return candidates.first { $0.quality == .premium }
+            ?? candidates.first { $0.quality == .enhanced }
+            ?? AVSpeechSynthesisVoice(language: Locale.current.identifier)
     }
 }
 

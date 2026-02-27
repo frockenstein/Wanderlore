@@ -25,6 +25,7 @@
 		C05DB2268B9005F0CFF7E009 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A7292F17A3483D12284655 /* LocationManager.swift */; };
 		C85F460DA3136D4BDEEF75D9 /* NarrationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFA29E1E19D43AE37D858C7 /* NarrationCard.swift */; };
 		C92881DFE9CF9B2092D8C9D4 /* WikipediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3E69CA2DC650D9B345972E /* WikipediaService.swift */; };
+		CB02FE3C6527B3E86847F1C5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE096F03292F447B5A016AE /* SplashView.swift */; };
 		D07A9AF1DD84E6435D8B2056 /* ModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D44BE9D8C425AD96C7D10D /* ModePicker.swift */; };
 		D7D8362A9D94433BE9B14A49 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01390A6A1AF270EFA10914F4 /* MainViewModel.swift */; };
 		F64A2EF90DAA881AE2DA5433 /* WanderloreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F2223FBE8ECFE8DAED5EAE /* WanderloreApp.swift */; };
@@ -73,6 +74,7 @@
 		E563CF7FDCC687DDDD25D573 /* VisitedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedLocation.swift; sourceTree = "<group>"; };
 		F228805AEB0770EFAD908F7F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F2A2C5AD43A4744F33F010EF /* InterestFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestFilter.swift; sourceTree = "<group>"; };
+		FBE096F03292F447B5A016AE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -83,6 +85,7 @@
 				49EDFBF8D688EDAB2A304410 /* Main */,
 				DCD84E260EF0B284D73EDAB6 /* Map */,
 				AD6D3CEBD98DA99CACDB5284 /* Settings */,
+				AE2E45C411D90E7D8C39BD1B /* Splash */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -212,6 +215,14 @@
 				F228805AEB0770EFAD908F7F /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		AE2E45C411D90E7D8C39BD1B /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				FBE096F03292F447B5A016AE /* SplashView.swift */,
+			);
+			path = Splash;
 			sourceTree = "<group>";
 		};
 		AFD24A722419A8A8C0FF98E9 /* Models */ = {
@@ -389,6 +400,7 @@
 				D07A9AF1DD84E6435D8B2056 /* ModePicker.swift in Sources */,
 				C85F460DA3136D4BDEEF75D9 /* NarrationCard.swift in Sources */,
 				1B1730E5E219BCD9336AF871 /* SettingsView.swift in Sources */,
+				CB02FE3C6527B3E86847F1C5 /* SplashView.swift in Sources */,
 				3FA4792A55B5A7B6D19BFB59 /* StartStopButton.swift in Sources */,
 				773178F6D12F4F30642810C7 /* TTSManager.swift in Sources */,
 				50062ECD22198F2AEFE66906 /* TourMode.swift in Sources */,
