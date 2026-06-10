@@ -47,7 +47,7 @@ final class ClaudeService {
     func rewrite(extract: String) async throws -> String {
         // Build the request body following the Messages API schema
         let body: [String: Any] = [
-            "model": "claude-sonnet-4-6",   // Use Sonnet for a balance of speed and quality
+            "model": "claude-haiku-4-5",   // Haiku a bit cheaper
             "max_tokens": 256,              // ~2-3 sentences; generous but capped to control latency
             "system": systemPrompt,         // Persona and output constraints
             "messages": [
