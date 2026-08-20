@@ -64,6 +64,11 @@ final class MainViewModel: ObservableObject {
     /// Stored so it can be cancelled when a newer location event arrives or the tour stops.
     private var fetchTask: Task<Void, Never>?
 
+    /// Wikipedia pageids already narrated this app session. The Wander movement
+    /// threshold (~46 m) is much smaller than its search radius (150 m), so without
+    /// this the same nearest article would re-trigger on every threshold crossing.
+    private var narratedPageIds: Set<Int> = []
+
     // MARK: - Init
 
     init(locationManager: LocationManager, ttsManager: TTSManager) {
@@ -127,9 +132,13 @@ final class MainViewModel: ObservableObject {
                 radius: currentMode.searchRadius
             )
 
-            guard let top = results.first else {
-                // No articles in range — happens in very remote areas
-                statusMessage = "Nothing nearby — keep exploring"
+            // Nearest article not yet narrated this session — geosearch returns
+            // nearest-first, so this picks the closest *new* landmark.
+            guard let top = results.first(where: { !narratedPageIds.contains($0.pageid) }) else {
+                // Nothing in range, or everything nearby was already narrated
+                statusMessage = results.isEmpty
+                    ? "Nothing nearby — keep exploring"
+                    : "Nothing new nearby — keep exploring"
                 isLoading = false
                 return
             }
@@ -149,6 +158,7 @@ final class MainViewModel: ObservableObject {
             currentNarration = narration
             statusMessage = top.title  // show article name as the card header
             isLoading = false
+            narratedPageIds.insert(top.pageid)
 
             // Record the visit so it appears as a dot on the history map.
             // Uses the article's GPS coordinate (from geosearch), not the user's

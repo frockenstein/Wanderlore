@@ -20,16 +20,32 @@ struct WanderloreApp: App {
     /// Wraps AVSpeechSynthesizer — owns the TTS audio session and speaking state.
     @StateObject private var ttsManager = TTSManager()
 
+    /// True while the splash screen covers the main UI. Flipped off (with a
+    /// crossfade) by SplashView's onFinished after its display duration elapses.
+    @State private var showSplash = true
+
     var body: some Scene {
         WindowGroup {
             // Pass services directly into ContentView, which forwards them into
             // MainViewModel. appState goes into the environment so nested sheets
             // (e.g. SettingsView) can access it without threading it through props.
-            ContentView(
-                locationManager: locationManager,
-                ttsManager: ttsManager
-            )
-            .environmentObject(appState)
+            ZStack {
+                ContentView(
+                    locationManager: locationManager,
+                    ttsManager: ttsManager
+                )
+                .environmentObject(appState)
+
+                // Splash overlays the (already rendered) main UI, then fades out —
+                // ContentView is live underneath, so there's no pop-in after the fade.
+                if showSplash {
+                    SplashView {
+                        withAnimation(.easeOut(duration: 0.4)) { showSplash = false }
+                    }
+                    .transition(.opacity)
+                    .zIndex(1)
+                }
+            }
         }
     }
 }

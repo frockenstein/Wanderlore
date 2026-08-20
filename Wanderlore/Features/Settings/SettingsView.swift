@@ -64,10 +64,10 @@ struct SettingsView: View {
                 }
 
                 // MARK: Playback
-                // autoPauseOnMedia is read by TTSManager's audio session setup
-                // (.duckOthers) — changing it here takes effect on the next narration.
+                // Controls TTSManager's audio session options (.duckOthers vs
+                // .mixWithOthers) — changing it takes effect on the next narration.
                 Section("Playback") {
-                    Toggle("Auto-pause when media plays", isOn: $appState.autoPauseOnMedia)
+                    Toggle("Lower other audio while narrating", isOn: $appState.autoPauseOnMedia)
                 }
 
                 // MARK: About

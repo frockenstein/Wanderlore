@@ -26,6 +26,11 @@ final class TTSManager: NSObject, ObservableObject {
     /// Synced from AppState.selectedVoiceIdentifier via ContentView's .onChange modifier.
     var voiceIdentifier: String = ""
 
+    /// When true, other audio (music, podcasts) is ducked while Wanderlore narrates;
+    /// when false, narration mixes with other audio at full volume.
+    /// Synced from AppState.autoPauseOnMedia via ContentView's .onChange modifier.
+    var duckOthers: Bool = true
+
     /// The underlying speech synthesizer. One instance is reused for the session
     /// to avoid the ~100 ms init overhead on every narration.
     private let synthesizer = AVSpeechSynthesizer()
@@ -60,8 +65,10 @@ final class TTSManager: NSObject, ObservableObject {
         }
 
         // Configure audio session for spoken-word playback.
-        // .duckOthers lowers competing audio (music, podcasts) while we speak.
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: .duckOthers)
+        // .duckOthers lowers competing audio (music, podcasts) while we speak;
+        // .mixWithOthers plays narration on top at full competing volume.
+        let options: AVAudioSession.CategoryOptions = duckOthers ? .duckOthers : .mixWithOthers
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: options)
         try? AVAudioSession.sharedInstance().setActive(true)
 
         synthesizer.speak(utterance)
@@ -82,6 +89,14 @@ final class TTSManager: NSObject, ObservableObject {
     /// Resumes from the paused word position.
     func resume() {
         synthesizer.continueSpeaking()
+    }
+
+    /// Releases the audio session once no narration is active so ducked audio
+    /// (music, podcasts) returns to full volume. `.notifyOthersOnDeactivation`
+    /// is what tells the interrupted app it may resume.
+    private func deactivateSessionIfIdle() {
+        guard !synthesizer.isSpeaking else { return }
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
     // MARK: - Voice Selection
@@ -110,12 +125,20 @@ extension TTSManager: AVSpeechSynthesizerDelegate {
     /// Called when an utterance finishes naturally (not when stopped manually).
     /// Bridge to @MainActor because delegate callbacks arrive on an internal audio thread.
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        Task { @MainActor in self.isSpeaking = false }
+        Task { @MainActor in
+            self.isSpeaking = false
+            self.deactivateSessionIfIdle()
+        }
     }
 
     /// Called when speech is cancelled via `stop()`. Also flips the speaking flag off
-    /// so the UI stays in sync even after a manual stop.
+    /// so the UI stays in sync even after a manual stop. The idle check inside
+    /// `deactivateSessionIfIdle` keeps the session alive when the cancel came from
+    /// `speak()` queuing a replacement utterance.
     nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {
-        Task { @MainActor in self.isSpeaking = false }
+        Task { @MainActor in
+            self.isSpeaking = false
+            self.deactivateSessionIfIdle()
+        }
     }
 }

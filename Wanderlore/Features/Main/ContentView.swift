@@ -106,6 +106,10 @@ struct ContentView: View {
         .onChange(of: appState.selectedVoiceIdentifier) { _, newId in
             viewModel.ttsManager.voiceIdentifier = newId
         }
+        // Forward the ducking preference the same way; takes effect on the next narration.
+        .onChange(of: appState.autoPauseOnMedia) { _, duck in
+            viewModel.ttsManager.duckOthers = duck
+        }
         .sheet(isPresented: $showSettings) {
             SettingsView().environmentObject(appState)
         }

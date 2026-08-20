@@ -57,12 +57,21 @@ final class LocationManager: NSObject, ObservableObject {
     }
 
     /// Begins streaming location updates to the delegate.
+    ///
+    /// Background updates are enabled here (and disabled in `stopUpdating`) so GPS
+    /// keeps flowing while the phone is locked — required for the `location` entry
+    /// in UIBackgroundModes to actually take effect. With when-in-use authorization
+    /// this shows the system's blue location indicator while backgrounded.
     func startUpdating() {
+        manager.allowsBackgroundLocationUpdates = true
+        manager.pausesLocationUpdatesAutomatically = false
+        manager.showsBackgroundLocationIndicator = true
         manager.startUpdatingLocation()
     }
 
-    /// Stops streaming. Called when the user pauses the tour or the app backgrounds.
+    /// Stops streaming. Called when the user pauses the tour.
     func stopUpdating() {
+        manager.allowsBackgroundLocationUpdates = false
         manager.stopUpdatingLocation()
     }
 

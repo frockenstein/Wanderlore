@@ -22,7 +22,8 @@ final class AppState: ObservableObject {
     /// Empty string means "use system default en-US voice."
     @Published var selectedVoiceIdentifier: String = ""
 
-    /// When true, TTS should duck/pause if another audio source begins playing.
-    /// Implemented via AVAudioSession .duckOthers option in TTSManager.
+    /// When true, other audio (music, podcasts) is ducked while narration plays;
+    /// when false, narration mixes on top of other audio instead.
+    /// Forwarded into TTSManager.duckOthers by ContentView's .onChange modifier.
     @Published var autoPauseOnMedia: Bool = true
 }
