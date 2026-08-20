@@ -15,7 +15,6 @@ DerivedData/
 
 # Secrets — never commit API keys
 Secrets.xcconfig
-*.xcconfig
 
 # macOS
 .DS_Store

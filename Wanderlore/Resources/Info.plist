@@ -18,6 +18,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CLAUDE_API_KEY</key>
+	<string>$(CLAUDE_API_KEY)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Wanderlore uses your location in the background to continue your audio tour while your phone is locked.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

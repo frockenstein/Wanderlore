@@ -6,12 +6,12 @@ import Foundation
 /// workflow for each environment is:
 ///
 /// **Development:**
-///   Product → Scheme → Edit Scheme → Run → Arguments → Environment Variables
-///   Add `CLAUDE_API_KEY` = `sk-ant-...`
+///   Copy `Secrets.xcconfig.example` to `Secrets.xcconfig` (gitignored) and
+///   set `CLAUDE_API_KEY`. Xcode substitutes it into Info.plist at build time.
 ///
 /// **CI / TestFlight:**
 ///   Inject via your CI provider's secret management (e.g. Xcode Cloud env vars,
-///   GitHub Actions secrets) and read the same `CLAUDE_API_KEY` env var.
+///   GitHub Actions secrets) as `CLAUDE_API_KEY`.
 ///
 /// **Production (advanced):**
 ///   Move key resolution server-side and have the app call your own backend,
@@ -21,16 +21,18 @@ enum Config {
     /// The Anthropic API key used by `ClaudeService`.
     ///
     /// Resolution order:
-    /// 1. `CLAUDE_API_KEY` environment variable (set in your Xcode scheme).
-    /// 2. Empty string fallback — ClaudeService will receive a 401 and surface
-    ///    an error message in the UI, prompting you to set the key.
+    /// 1. `CLAUDE_API_KEY` environment variable (CI or a local scheme override).
+    /// 2. Info.plist value substituted from `Secrets.xcconfig` at build time.
+    /// 3. Empty string — ClaudeService will receive a 401 and surface an error.
     static let claudeAPIKey: String = {
         if let key = ProcessInfo.processInfo.environment["CLAUDE_API_KEY"], !key.isEmpty {
             return key
         }
-        // ⚠️ Paste a dev key here temporarily if needed, but never commit it.
-        // Consider adding a Secrets.xcconfig (gitignored) and reading from Bundle
-        // for a cleaner local workflow.
+        if let key = Bundle.main.object(forInfoDictionaryKey: "CLAUDE_API_KEY") as? String,
+           !key.isEmpty,
+           !key.hasPrefix("$(") {
+            return key
+        }
         return ""
     }()
 }

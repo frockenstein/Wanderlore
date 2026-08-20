@@ -50,13 +50,6 @@
             ReferencedContainer = "container:Wanderlore.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "CLAUDE_API_KEY"
-            value = "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"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

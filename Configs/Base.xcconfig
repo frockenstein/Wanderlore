@@ -1,0 +1,5 @@
+// Default empty so Info.plist substitution does not leave a literal $(CLAUDE_API_KEY).
+// Secrets.xcconfig (gitignored) overrides this when present.
+CLAUDE_API_KEY =
+
+#include? "../Secrets.xcconfig"

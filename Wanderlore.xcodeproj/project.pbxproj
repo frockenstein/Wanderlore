@@ -75,6 +75,7 @@
 		F228805AEB0770EFAD908F7F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F2A2C5AD43A4744F33F010EF /* InterestFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestFilter.swift; sourceTree = "<group>"; };
 		FBE096F03292F447B5A016AE /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		B4C8E1A92F0D4B7A8C3E5D61 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -202,11 +203,20 @@
 		A8E2F382FDCE8EC1ACF2F7B9 = {
 			isa = PBXGroup;
 			children = (
+				C1D2E3F4A5B60718293A4B5C /* Configs */,
 				7B0690D2AB5B14217B02CF48 /* Wanderlore */,
 				56F4FC9350DA1356B3D4D661 /* WanderloreTests */,
 				F344DBB1317617CA90741267 /* WanderloreUITests */,
 				F22921A190BCA94030ACD82C /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		C1D2E3F4A5B60718293A4B5C /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				B4C8E1A92F0D4B7A8C3E5D61 /* Base.xcconfig */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 		AD6D3CEBD98DA99CACDB5284 /* Settings */ = {
@@ -527,6 +537,7 @@
 		};
 		399BF2484E406D372FAB704D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4C8E1A92F0D4B7A8C3E5D61 /* Base.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -566,6 +577,7 @@
 		};
 		932CF958BCE583727F3C355D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4C8E1A92F0D4B7A8C3E5D61 /* Base.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
